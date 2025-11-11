@@ -1,4 +1,4 @@
-package task1.model;
+package task2.model;
 
 public interface Drawable {
     void draw();

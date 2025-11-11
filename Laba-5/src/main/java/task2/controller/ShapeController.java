@@ -1,4 +1,4 @@
-package task1.controller;
+package task2.controller;
 
 import model.*;
 import view.ShapeView;

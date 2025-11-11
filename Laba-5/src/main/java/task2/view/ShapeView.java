@@ -1,4 +1,4 @@
-package task1.view;
+package task2.view;
 
 import java.util.List;
 import java.util.Scanner;
