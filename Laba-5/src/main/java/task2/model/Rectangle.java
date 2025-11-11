@@ -1,6 +1,6 @@
 package task2.model;
 
-import model.Shape;
+import task2.model.Shape;
 
 public class Rectangle extends Shape {
     private double width;

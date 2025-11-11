@@ -1,7 +1,7 @@
 package task2;
 
-import controller.ShapeController;
-import view.ShapeView;
+import task2.controller.ShapeController;
+import task2.view.ShapeView;
 
 public class Main {
     public static void main(String[] args) {

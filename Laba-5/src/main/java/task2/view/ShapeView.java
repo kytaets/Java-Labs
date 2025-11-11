@@ -16,6 +16,8 @@ public class ShapeView {
         System.out.println("6. Show total area by type");
         System.out.println("7. Sort by area");
         System.out.println("8. Sort by color");
+        System.out.println("9. Save shapes to file");
+        System.out.println("10. Load shapes from file");
         System.out.println("0. Exit");
     }
 

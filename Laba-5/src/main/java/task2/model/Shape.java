@@ -1,6 +1,8 @@
 package task2.model;
 
-public abstract class Shape implements Drawable {
+import java.io.Serializable;
+
+public abstract class Shape implements Drawable, Serializable {
     protected String shapeColor;
 
     public Shape(String shapeColor) {

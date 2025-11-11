@@ -1,6 +1,6 @@
 package task2.model;
 
-import model.Shape;
+import task2.model.Shape;
 
 public class Triangle extends Shape {
     private double base;
