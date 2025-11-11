@@ -16,12 +16,12 @@ class Demonstration {
         FireTruck fireTruck = new FireTruck();
         PoliceCar policeCar = new PoliceCar();
 
-        bus.boardPassenger(new Human("Пас_Бус_1"));
-        bus.boardPassenger(new Human("Пас_Бус_2"));
+        bus.boardPassenger(new Human("Іван"));
+        bus.boardPassenger(new Human("Дмитро"));
 
-        fireTruck.boardPassenger(new Firefighter("Пож_Маш_1"));
+        fireTruck.boardPassenger(new Firefighter("Полковник Іванов"));
 
-        policeCar.boardPassenger(new Policeman("Пол_Маш_1"));
+        policeCar.boardPassenger(new Policeman("Офіцер Галушко"));
 
         System.out.println("--- СТАН ТРАНСПОРТУ ---");
         System.out.println("Автобус: " + bus.getCurrentOccupancy() + " пасажири.");
@@ -32,24 +32,18 @@ class Demonstration {
         System.out.println("\n--- ДОДАВАННЯ НА ДОРОГУ (Road.addVehicleToRoad) ---");
 
         road.addVehicleToRoad(bus);
-        System.out.println("Додано Bus (Vehicle<Human>)");
+        System.out.println("Додано Bus");
 
         road.addVehicleToRoad(fireTruck);
-        System.out.println("Додано FireTruck (Vehicle<Firefighter>)");
+        System.out.println("Додано FireTruck");
 
         road.addVehicleToRoad(policeCar);
-        System.out.println("Додано PoliceCar (Vehicle<Policeman>)");
+        System.out.println("Додано PoliceCar");
 
         int totalHumans = road.getCountOfHumans();
         int expectedCount = 4;
 
         System.out.println("\n--- РЕЗУЛЬТАТ ПІДРАХУНКУ ---");
         System.out.println("Загальна кількість людей на Road: " + totalHumans);
-
-        if (totalHumans == expectedCount) {
-            System.out.println("✅ Успіх: Підрахунок коректний (Очікується: " + expectedCount + ")");
-        } else {
-            System.out.println("❌ Помилка: Очікується " + expectedCount + ", отримано " + totalHumans);
-        }
     }
 }

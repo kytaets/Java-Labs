@@ -1,10 +1,14 @@
 package model;
 
 public abstract class Shape implements Drawable {
-    public String shapeColor;
+    protected String shapeColor;
 
     public Shape(String shapeColor) {
         this.shapeColor = shapeColor;
+    }
+
+    public String getColor() {
+        return shapeColor;
     }
 
     public abstract double calcArea();
