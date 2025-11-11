@@ -9,13 +9,11 @@ public class MaxWordsInLine {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Базовий шлях
         String defaultPath = "Laba-5/src/main/java/task1/files/input.txt";
 
         System.out.print("Enter path to file (press Enter for default): ");
         String inputPath = scanner.nextLine().trim();
 
-        // Якщо користувач нічого не ввів — використовуємо базовий файл
         String filePath = inputPath.isEmpty() ? defaultPath : inputPath;
 
         String maxLine = "";

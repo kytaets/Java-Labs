@@ -26,7 +26,7 @@ public class ShapeController {
             try {
                 choice = Integer.parseInt(choiceStr);
             } catch (NumberFormatException e) {
-                view.displayMessage("❌ Invalid input! Enter a number.");
+                view.displayMessage("Invalid input! Enter a number.");
                 continue;
             }
 
@@ -42,10 +42,10 @@ public class ShapeController {
                 case 9 -> saveToFile();
                 case 10 -> loadFromFile();
                 case 0 -> {
-                    view.displayMessage("👋 Exiting...");
+                    view.displayMessage("Exiting...");
                     running = false;
                 }
-                default -> view.displayMessage("❌ Invalid choice!");
+                default -> view.displayMessage("Invalid choice!");
             }
 
         }
@@ -55,7 +55,7 @@ public class ShapeController {
         String color = view.getInput("Enter color: ");
         double radius = view.getDoubleInput("Enter radius: ");
         shapes.add(new Circle(color, radius));
-        view.displayMessage("✅ Circle added!");
+        view.displayMessage("Circle added!");
     }
 
     private void addRectangle() {
@@ -63,7 +63,7 @@ public class ShapeController {
         double width = view.getDoubleInput("Enter width: ");
         double height = view.getDoubleInput("Enter height: ");
         shapes.add(new Rectangle(color, width, height));
-        view.displayMessage("✅ Rectangle added!");
+        view.displayMessage("Rectangle added!");
     }
 
     private void addTriangle() {
@@ -71,7 +71,7 @@ public class ShapeController {
         double base = view.getDoubleInput("Enter base: ");
         double height = view.getDoubleInput("Enter height: ");
         shapes.add(new Triangle(color, base, height));
-        view.displayMessage("✅ Triangle added!");
+        view.displayMessage("Triangle added!");
     }
 
     private void showAllShapes() {
@@ -93,7 +93,7 @@ public class ShapeController {
             case "rectangle" -> calcTotalAreaByType(Rectangle.class);
             case "triangle" -> calcTotalAreaByType(Triangle.class);
             default -> {
-                view.displayMessage("❌ Unknown type!");
+                view.displayMessage("Unknown type!");
                 yield 0;
             }
         };
@@ -109,12 +109,12 @@ public class ShapeController {
 
     private void sortByArea() {
         shapes.sort(Comparator.comparingDouble(Shape::calcArea));
-        view.displayMessage("✅ Sorted by area!");
+        view.displayMessage("Sorted by area!");
     }
 
     private void sortByColor() {
         shapes.sort(Comparator.comparing(Shape::getColor));
-        view.displayMessage("✅ Sorted by color!");
+        view.displayMessage("Sorted by color!");
     }
 
     private void saveToFile() {
@@ -128,7 +128,7 @@ public class ShapeController {
 
         File dir = new File(dirPath);
         if (!dir.exists() && !dir.mkdirs()) {
-            view.displayMessage("❌ Could not create directory: " + dirPath);
+            view.displayMessage("Could not create directory: " + dirPath);
             return;
         }
 
@@ -136,9 +136,9 @@ public class ShapeController {
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(shapes);
-            view.displayMessage("✅ Shapes saved to " + file.getPath());
+            view.displayMessage("Shapes saved to " + file.getPath());
         } catch (IOException e) {
-            view.displayMessage("❌ Error saving file: " + e.getMessage());
+            view.displayMessage("Error saving file: " + e.getMessage());
         }
     }
 
@@ -155,7 +155,7 @@ public class ShapeController {
         File file = new File(dirPath, filename);
 
         if (!file.exists()) {
-            view.displayMessage("⚠️ File not found: " + file.getPath());
+            view.displayMessage("File not found: " + file.getPath());
             return;
         }
 
@@ -164,12 +164,12 @@ public class ShapeController {
             if (obj instanceof List<?>) {
                 shapes.clear();
                 shapes.addAll((List<Shape>) obj);
-                view.displayMessage("✅ Shapes loaded from " + file.getPath());
+                view.displayMessage("Shapes loaded from " + file.getPath());
             } else {
-                view.displayMessage("❌ Invalid file format.");
+                view.displayMessage("Invalid file format.");
             }
         } catch (IOException | ClassNotFoundException e) {
-            view.displayMessage("❌ Error loading file: " + e.getMessage());
+            view.displayMessage("Error loading file: " + e.getMessage());
         }
     }
 
