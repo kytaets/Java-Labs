@@ -9,8 +9,10 @@ import java.util.List;
 import java.io.*;
 
 public class ShapeController {
+
     private final List<Shape> shapes = new ArrayList<>();
     private final ShapeView view;
+    private final ShapeFileManager fileManager = new ShapeFileManager();
 
     public ShapeController(ShapeView view) {
         this.view = view;
@@ -126,23 +128,14 @@ public class ShapeController {
         String name = view.getInput("Enter filename (without extension): ");
         String filename = name.endsWith(".dat") ? name : name + ".dat";
 
-        File dir = new File(dirPath);
-        if (!dir.exists() && !dir.mkdirs()) {
-            view.displayMessage("Could not create directory: " + dirPath);
-            return;
-        }
-
-        File file = new File(dir, filename);
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
-            oos.writeObject(shapes);
-            view.displayMessage("Shapes saved to " + file.getPath());
+        try {
+            fileManager.saveShapes(shapes, dirPath, filename);
+            view.displayMessage("Shapes saved successfully.");
         } catch (IOException e) {
             view.displayMessage("Error saving file: " + e.getMessage());
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void loadFromFile() {
         String customDir = view.getInput("Enter directory to load from (press Enter for default): ");
         String dirPath = customDir.isBlank()
@@ -152,25 +145,13 @@ public class ShapeController {
         String name = view.getInput("Enter filename (without extension): ");
         String filename = name.endsWith(".dat") ? name : name + ".dat";
 
-        File file = new File(dirPath, filename);
-
-        if (!file.exists()) {
-            view.displayMessage("File not found: " + file.getPath());
-            return;
-        }
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            Object obj = ois.readObject();
-            if (obj instanceof List<?>) {
-                shapes.clear();
-                shapes.addAll((List<Shape>) obj);
-                view.displayMessage("Shapes loaded from " + file.getPath());
-            } else {
-                view.displayMessage("Invalid file format.");
-            }
+        try {
+            List<Shape> loaded = fileManager.loadShapes(dirPath, filename);
+            shapes.clear();
+            shapes.addAll(loaded);
+            view.displayMessage("Shapes loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             view.displayMessage("Error loading file: " + e.getMessage());
         }
     }
-
 }
