@@ -7,9 +7,7 @@ import java.util.List;
 
 public class ShapeFileManager {
 
-    /**
-     * Зберігає список фігур у вказаний файл.
-     */
+
     public void saveShapes(List<Shape> shapes, String directoryPath, String filename) throws IOException {
         File dir = new File(directoryPath);
         if (!dir.exists() && !dir.mkdirs()) {
@@ -23,9 +21,7 @@ public class ShapeFileManager {
         }
     }
 
-    /**
-     * Завантажує список фігур з файлу.
-     */
+
     @SuppressWarnings("unchecked")
     public List<Shape> loadShapes(String directoryPath, String filename)
             throws IOException, ClassNotFoundException {
