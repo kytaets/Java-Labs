@@ -3,7 +3,6 @@ package com.example.bank;
 class Bank {
 
     public void transfer(Account from, Account to, int amount) {
-        // Порядок блокування — по ID
         Account first = from.getId() < to.getId() ? from : to;
         Account second = from.getId() < to.getId() ? to : from;
 

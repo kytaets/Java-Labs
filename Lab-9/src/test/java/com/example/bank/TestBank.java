@@ -17,7 +17,6 @@ public class TestBank {
 
         Bank bank = new Bank();
 
-        // 1) CREATE ACCOUNTS
         Account acc1 = new Account(1, 500);
         Account acc2 = new Account(2, 800);
         Account acc3 = new Account(3, 1200);
@@ -25,14 +24,12 @@ public class TestBank {
 
         List<Account> accounts = Arrays.asList(acc1, acc2, acc3, acc4);
 
-        // 2) PRINT INITIAL STATE
         System.out.println("INITIAL BALANCES:");
         accounts.forEach(a -> System.out.println("  com.example.bank.Account " + a.getId() + ": " + a.getBalance() + " USD"));
 
         int initialTotal = accounts.stream().mapToInt(Account::getBalance).sum();
         System.out.println("\nTOTAL MONEY AT START: " + initialTotal + " USD\n");
 
-        // 3) DEFINE PARALLEL OPERATIONS
         class TransferOperation {
             final Account from;
             final Account to;
@@ -63,7 +60,6 @@ public class TestBank {
         }
         System.out.println();
 
-        // 4) EXECUTE TRANSFERS IN PARALLEL
         ExecutorService pool = Executors.newFixedThreadPool(4);
 
         System.out.println("=== STARTING TRANSFERS ===\n");
@@ -90,7 +86,6 @@ public class TestBank {
         pool.shutdown();
         pool.awaitTermination(3, TimeUnit.SECONDS);
 
-        // 5) PRINT FINAL STATE
         System.out.println("\n=== FINAL BALANCES ===");
         accounts.forEach(a ->
                 System.out.println("Account " + a.getId() + ": " + a.getBalance() + " USD")
@@ -99,7 +94,6 @@ public class TestBank {
         int finalTotal = accounts.stream().mapToInt(Account::getBalance).sum();
         System.out.println("\nTOTAL MONEY AFTER ALL TRANSFERS: " + finalTotal + " USD\n");
 
-        // 6) CHECK MONEY PRESERVATION
         System.out.println("Check: total before == total after");
         System.out.println("  " + initialTotal + " == " + finalTotal);
 
